@@ -25,17 +25,38 @@ export class AppController {
   @Post('users')
   createUser() {
     return this.userRepository.save({
-      // title: 'test title',
+      email: 'test title',
     });
   }
 
   @Get('users')
   getUsers() {
     return this.userRepository.find({
+      select: {
+        id: true,
+        email: true,
+        profile: {
+          id: true,
+        },
+      },
+      where: [
+        {
+          profile: {
+            id: 3,
+          },
+        },
+        {
+          version: 1,
+        },
+      ],
       relations: {
         profile: true,
-        posts: true,
       },
+      order: {
+        id: 'ASC',
+      },
+      skip: 0,
+      take: 1,
     });
   }
 
