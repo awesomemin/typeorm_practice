@@ -32,31 +32,34 @@ export class AppController {
   @Get('users')
   getUsers() {
     return this.userRepository.find({
-      select: {
-        id: true,
-        email: true,
-        profile: {
-          id: true,
-        },
+      where: {
+        // id: Not(1),
+        // id: LessThan(30),
+        // id: LessThanOrEqual(30),
+        // id: MoreThan(30),
+        // id: MoreThanOrEqual(30),
+        // id: Equal(30),
+        // email: Like('%google%'),
+        // email: ILike('GOOGLE'),
+        // id: Between(10, 15),
+        // id: In([1, 3, 5, 7, 99]),
+        // id: IsNull(),
       },
-      where: [
-        {
-          profile: {
-            id: 3,
-          },
-        },
-        {
-          version: 1,
-        },
-      ],
-      relations: {
-        profile: true,
-      },
-      order: {
-        id: 'ASC',
-      },
-      skip: 0,
-      take: 1,
+      // select: {
+      //   id: true,
+      //   email: true,
+      //   profile: {
+      //     id: true,
+      //   },
+      // },
+      // relations: {
+      //   profile: true,
+      // },
+      // order: {
+      //   id: 'ASC',
+      // },
+      // skip: 0,
+      // take: 1,
     });
   }
 
